@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Login from "./component/(auth)/login/Login";
+import SignUp from "./component/(auth)/signup/SignUp";
+import DashBoard from "./component/(dashboard)/DashBoard";
+import CreateAdmin from "./component/(listing)/CreateAdmin";
+import AdminDetails from "./component/(table-data)/AdminDetails";
+import WithoutAuthentication from "./routes/WithoutAuthentication";
+import WithAuthentication from "./routes/WithAuthentication";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+      <Route path="/login" element={<WithoutAuthentication Component={Login} />} />
+        <Route path="/signup" element={<WithoutAuthentication Component={SignUp} />} />
+        <Route path="/" element={<WithAuthentication Component={DashBoard} />} />
+        <Route path="/create-admin" element={<WithAuthentication Component={CreateAdmin} />} />
+        <Route path="/table-data" element={<WithAuthentication Component={AdminDetails} />} />
+      </Routes>
     </div>
   );
 }
